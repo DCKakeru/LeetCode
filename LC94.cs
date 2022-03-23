@@ -13,17 +13,17 @@
  */
 public class Solution
 {
-    public IList<int> InorderTraversal(TreeNode root)
+    List<int> res = new List<int>();
+    public List<int> InorderTraversal(TreeNode root)
     {
-        var res = new List<int>();
-        Helper(root, res);
-        return res;
+        return Helper(root).ToList();
     }
-    public void Helper(TreeNode root, List<int> res)
+    public IList<int> Helper(TreeNode root)
     {
-        if (root == null) return;
-        Helper(root.left, res);
+        if (root == null) return res;
+        res.Concat(Helper(root.left));
         res.Add(root.val);
-        Helper(root.right, res);
+        res.Concat(Helper(root.right));
+        return res;
     }
 }
